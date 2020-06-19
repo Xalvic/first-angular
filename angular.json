@@ -123,6 +123,14 @@
               "devServerTarget": "new-log:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/new-log",
+            "netlifyToken": "b62d31405b29c472216426bc8b89c577d4ac23023722bcae2b6ac94987d7459a",
+            "siteId": "    78dd84e1-f438-4208-847f-173072431862"
+          }
         }
       }
     }

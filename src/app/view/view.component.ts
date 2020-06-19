@@ -3,9 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+// import { MatTableDataSource } from '@angular/material/table';
 import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
+// const data: GithubIssue[] = [];
 /**
  * @title Table retrieving data through HTTP
  */
@@ -15,9 +17,11 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
   styleUrls: ['./view.component.scss'],
 })
 export class ViewComponent implements AfterViewInit {
+  searchQ = '';
   displayedColumns: string[] = ['name', 'price', 'unit'];
   exampleDatabase: ProductService | null;
   data: GithubIssue[] = [];
+  // dataSource = new MatTableDataSource(this.data);
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -39,7 +43,7 @@ export class ViewComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.exampleDatabase!.getRepoIssues(this.paginator.pageIndex);
+          return this.exampleDatabase!.getProducts(this.paginator.pageIndex);
         }),
         map((data) => {
           // Flip flag to show that loading has finished.
@@ -58,9 +62,14 @@ export class ViewComponent implements AfterViewInit {
       )
       .subscribe((data) => (this.data = data));
   }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   console.log(this.dataSource);
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 }
 
-export interface GithubApi {
+export interface ProductApi {
   results: GithubIssue[];
   count: number;
 }
@@ -75,15 +84,15 @@ export interface GithubIssue {
 export class ProductService {
   constructor(private _httpClient: HttpClient) {}
 
-  getRepoIssues(
+  getProducts(
     // sort: string,
-    // order: string,
+    // search: string,
     page: number
-  ): Observable<GithubApi> {
+  ): Observable<ProductApi> {
     const href =
       'http://ec2-13-59-62-104.us-east-2.compute.amazonaws.com:8090/api/v1/fish/';
     const requestUrl = `${href}?page=${page + 1}`;
 
-    return this._httpClient.get<GithubApi>(requestUrl);
+    return this._httpClient.get<ProductApi>(requestUrl);
   }
 }

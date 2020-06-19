@@ -1,7 +1,15 @@
 /* Structure */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .product-container {
   position: relative;
-  min-height: 200px;
+  padding: 20px;
+  // min-height: 200px;
+  width: 80%;
 }
 
 .product-table-container {
@@ -13,7 +21,10 @@
 table {
   width: 100%;
 }
-
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
 .product-loading-shade {
   position: absolute;
   top: 0;
@@ -34,11 +45,11 @@ table {
 }
 
 /* Column Widths */
-.mat-column-number,
-.mat-column-state {
+.mat-column-name,
+.mat-column-price {
   max-width: 64px;
 }
 
-.mat-column-created {
+.mat-column-unit {
   max-width: 124px;
 }

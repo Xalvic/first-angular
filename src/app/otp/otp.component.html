@@ -1,0 +1,19 @@
+<style>
+  .wrap {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>
+
+<div class="wrap">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter the otp</mat-label>
+    <input type="text" [(ngModel)]="registerOtp" name="password" matInput />
+  </mat-form-field>
+  <button (click)="registerUserOtp()" mat-raised-button color="primary">
+    Submit
+  </button>
+</div>

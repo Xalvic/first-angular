@@ -1,0 +1,19 @@
+<style>
+  .wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>
+
+<div class="wrapper">
+  <mat-form-field appearance="outline">
+    <mat-label>Phone</mat-label>
+    <input type="text" [(ngModel)]="registerPhone" name="phone" matInput />
+  </mat-form-field>
+  <button (click)="registerUser()" mat-raised-button color="primary">
+    Submit
+  </button>
+</div>
